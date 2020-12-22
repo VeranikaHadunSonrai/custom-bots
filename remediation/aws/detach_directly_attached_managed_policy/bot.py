@@ -17,5 +17,6 @@ def run(ctx):
     managed_policies_attached = response['AttachedPolicies']
     # detach those policies
     # to detach inline policies use iam_client.delete_user_policy()
+    logging.info("Detaching all directly attached managed policies from the user {}.".format(user_name))
     for policy in managed_policies_attached:
         iam_client.detach_user_policy(UserName=user_name, PolicyArn=policy['PolicyArn'])
